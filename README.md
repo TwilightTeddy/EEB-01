@@ -1,3 +1,3 @@
-# EEB-01
+# EEB-01 - Decoding Hibernation
 # RNAseq_analysis_brown_bear_adipose
 # The purpose of our project is to examine the gene expression changes of our organism of interest: the grizzly bear (Ursus arctos) during hibernation as bears remarkably evade the detrimental health effects associated with prolonged inactivity in humans. Such changes include reductions in body temperature, metabolic suppression, and temporary insulin resistance. In our project, we viewed RNA samples from real brown bear adipose tissue using both wet lab (pipetting, qPCR, gel electrophoresis) and computational tools including Hummingbird Computational Cluster (combination of Python, Linux, and R) and RStudio. The findings from this project have implications for human medicine, including advancements in treating metabolic disorders, identifying mediators of metabolic homeostasis, and potential therapeutic approaches for muscle-wasting diseases.
