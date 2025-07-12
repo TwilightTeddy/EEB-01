@@ -7,10 +7,29 @@ SRA's purpose is to store and provide public access to raw sequencing data gener
 
 
 ## Function
-To get data from the SRA, we use two tools: prefetch, which downloads .sra files in the raw compressed format used by NCBI and fasterq-dump, which converts .sra files into .fastq files, which are text files of sequencing reads. Each read has a name, DNA sequence, and quality score.
+Fastq data is highly compressed, which is why we cannot download fastq files directly. To get data from the SRA, we use two tools: prefetch, which downloads .sra files in the raw compressed format used by NCBI and fasterq-dump, which converts .sra files into .fastq files, which are text files of sequencing reads. Each read has a name, DNA sequence, and quality score.
 
 
 ## Usage
-Our .sra files are containers for raw sequencing reads
-Explain each parameter used
--g, break down each part of the functions used, etc
+Two main command-line tools are used for this process. 
+
+The first, prefetch, downloads .sra files from the SRA database. It pulls data using accession numbers (e.g., SRR12345678) and saves them in your local system for further processing. 
+
+The second, fasterq-dump, extracts raw sequencing reads from .sra files and converts them into .fastq format, which is suitable for downstream analysis (e.g., quality control, alignment).
+
+```
+# Step 1: Download the .sra file prefetch SRR12345678 --output-directory ./sra_data
+# Step 2: Convert .sra to .fastq fasterq-dump
+./sra_data/SRR12345678.sra --split-files --outdir ./fastq_data --threads 4
+```
+
+
+fasterq-dump SRR12345678: Converts the downloaded .sra file into .fastq format.
+
+-S: Output both paired-end reads into a single interleaved FASTQ file (used in specific workflows).
+
+--split-files: Outputs paired-end reads into separate _1.fastq and _2.fastq files. Use this if your data is paired-end.
+
+--threads <n>: Sets the number of CPU threads (e.g., --threads 8) to accelerate the dumping process.
+
+--outdir <dir>: Specify the output directory where .fastq files will be saved.
