@@ -18,17 +18,16 @@ The first, prefetch, downloads .sra files from the SRA database. It pulls data u
 The second, fasterq-dump, extracts raw sequencing reads from .sra files and converts them into .fastq format, which is suitable for downstream analysis (e.g., quality control, alignment).
 
 ```
-# Step 1: Download the .sra file prefetch SRR12345678 --output-directory ./sra_data
-# Step 2: Convert .sra to .fastq fasterq-dump
-./sra_data/SRR12345678.sra --split-files --outdir ./fastq_data --threads 4
-```
+# Step 1: Download the .sra file
+prefetch SRR12345678 --output-directory ./sra_data
 
+# Step 2: Convert .sra to .fastq fasterq-dump
+./sra_data/SRR12345678.sra  --outdir ./fastq_data --threads 4
+```
 
 fasterq-dump SRR12345678: Converts the downloaded .sra file into .fastq format.
 
 -S: Output both paired-end reads into a single interleaved FASTQ file (used in specific workflows).
-
---split-files: Outputs paired-end reads into separate _1.fastq and _2.fastq files. Use this if your data is paired-end.
 
 --threads <n>: Sets the number of CPU threads (e.g., --threads 8) to accelerate the dumping process.
 
