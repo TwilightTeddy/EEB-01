@@ -1,4 +1,4 @@
-# Tool name
+# Tool name: SRA
 Sequence Read Archive (SRA) is a library of raw DNA and RNA sequencing data.
 
 
