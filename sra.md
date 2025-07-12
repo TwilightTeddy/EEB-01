@@ -7,15 +7,7 @@ SRA's purpose is to store and provide public access to raw sequencing data gener
 
 
 ## Function
-Fastq data is highly compressed, which is why we cannot download fastq files directly. To get data from the SRA, we use two tools: prefetch, which downloads .sra files in the raw compressed format used by NCBI and fasterq-dump, which converts .sra files into .fastq files, which are text files of sequencing reads. Each read has a name, DNA sequence, and quality score.
-
-
-## Usage
-Two main command-line tools are used for this process. 
-
-The first, prefetch, downloads .sra files from the SRA database. It pulls data using accession numbers (e.g., SRR12345678) and saves them in your local system for further processing. 
-
-The second, fasterq-dump, extracts raw sequencing reads from .sra files and converts them into .fastq format, which is suitable for downstream analysis (e.g., quality control, alignment).
+Fastq data is highly compressed, which is why we cannot download fastq files directly. To get data from the SRA, we use two tools: prefetch, which downloads .sra files in the raw compressed format used by NCBI and fasterq-dump, which converts .sra files into .fastq files, which are text files of sequencing reads. Each read has a name, DNA sequence, and quality score. Here is are some directions:
 
 ```
 # Step 1: Download the .sra file
@@ -27,8 +19,31 @@ prefetch SRR12345678 --output-directory ./sra_data
 
 fasterq-dump SRR12345678: Converts the downloaded .sra file into .fastq format.
 
--S: Output both paired-end reads into a single interleaved FASTQ file (used in specific workflows).
-
 --threads <n>: Sets the number of CPU threads (e.g., --threads 8) to accelerate the dumping process.
 
 --outdir <dir>: Specify the output directory where .fastq files will be saved.
+
+
+## Usage
+
+We created a SLURM script to handle both downloading and converting SRA data in one batch job. Below is an example of our SLURM script and an explanation of each part:
+
+```
+#!/bin/bash
+
+#SBATCH --job-name=getSRA    			# Job name
+#SBATCH --partition=128x24				# Partition name
+#SBATCH --mail-type=ALL               		# Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=UCSC_ID@ucsc.edu   	# Where to send mail
+#SBATCH --time=0-05:00:00 				# Wall clock time limit in Days-Hours:min:seconds
+#SBATCH --ntasks=1                    		# Run a single task
+#SBATCH --cpus-per-task=4                  	# Use 4 threads for fasterq-dump
+#SBATCH --output=scripts/logs/fasterq-dump_%j.out    # Standard output and error log
+#SBATCH --error=scripts/logs/fasterq-dump_%j.err     # Standard output and error log
+#SBATCH --mem=8G                    		# Allocate memory for the job.
+#SBATCH --array=1-11					# array job
+
+```
+
+
+
