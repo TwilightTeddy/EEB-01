@@ -1,4 +1,4 @@
-# Tool name: SRA
+# Tool Name: SRA
 Sequence Read Archive (SRA) is a library of raw DNA and RNA sequencing data.
 
 
@@ -19,9 +19,9 @@ prefetch SRR12345678 --output-directory ./sra_data
 
 fasterq-dump SRR12345678: Converts the downloaded .sra file into .fastq format.
 
---threads <n>: Sets the number of CPU threads (e.g., --threads 8) to accelerate the dumping process.
+--threads: Sets the number of CPU threads (e.g., --threads 8) to accelerate the dumping process.
 
---outdir <dir>: Specify the output directory where .fastq files will be saved.
+--outdir: Specify the output directory where .fastq files will be saved.
 
 
 ## Usage
