@@ -1,4 +1,4 @@
-#Bioinformatics pipeline:  trimgalore → STAR → featureCounts
+## Bioinformatics Pipeline:  trimgalore → STAR → featureCounts
 
 adapt and quality trimming with trimgalore (remove <50 bp reads), got FASTQ files from this, mapping transcripts to brown bear genome with STAR <- Map to brown bear genome (GCA_023065955.2)
   Keep only uniquely mapped reads
