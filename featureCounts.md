@@ -26,6 +26,23 @@ We used featureCounts in a SLURM script to generate a gene-level count matrix fr
 #SBATCH --error=/hb/groups/sip_eeb_01/name/scripts/logs/runfeaturecounts_%j.err     # Standard output and error log
 #SBATCH --mem=8G                    # Allocate memory for the job.
 
-featureCounts [arguments] -o 3_featureCounts/bear_adipose_rawCounts.txt 2_STAR/*.bam
+featureCounts -p -a data/genome/GCF_023065955.2_UrsArc2.0_genomic.gtf -F 'GTF' -g gene_id -t exon -T 8 -o analysis/3_featurecounts/bear_adipose_rawCounts.txt analysis/2_star/*.bam
 
 ```
+--p: Tells featureCounts that the input data is paired-end
+
+--a <string>: Provides name of an annotation file. 
+
+--F (isGTFAnnotationFile): Specify the format of the annotation file.
+
+--g < string > (GTF.attrType): Specify the attribute type used to group features (eg. exons) into meta-features (eg. genes) when GTF annotation is provided. Ours is gene_id. 
+
+--t < string > (GTF.featureType): Specify the feature type(s) (thread count). 
+
+--o < string >: Output file which saves the gene count matrix to this file. Located in the analysis/3_featurecounts/ directory.
+
+--analysis/2_star/*.bam: For input files. All BAM files from STAR alignment are stored in the analysis/2_star/ folder.
+
+
+
+
