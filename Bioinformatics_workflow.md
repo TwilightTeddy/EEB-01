@@ -1,13 +1,13 @@
-## Bioinformatics Pipeline:  trimgalore → STAR → featureCounts
+## Bioinformatics Pipeline: Trim Galore → STAR → featureCounts  
 
-Here is an explanation of a key pathway in our workflow: our bioinformatics pipeline. 
+Below is a breakdown of the core workflow used in our RNA-seq analysis pipeline:
 
-We started off by performing adaptation and quality trimming with trimgalore (which removed <50 bp reads), and got FASTQ files as an output. 
+We began with adapter and quality trimming using trimGalore, which removed low-quality bases and discarded reads shorter than 50 bp. This produced cleaned paired-end FASTQ files ready for alignment.
 
-Then, we proceeded by mapping transcripts to the brown bear (Ursus arctos) genome with STAR (GCA_023065955.2), keeping only uniquely mapped reads which were converted to BAM files representing the aligned sequences (sorted for downstream use).
+Next, we used STAR to align the trimmed reads to the *Ursus arctos* (brown bear) reference genome (GCA_023065955.2). We retained only uniquely mapped reads, and STAR output sorted BAM files containing the aligned sequences for each sample.
 
-Furthemore, we quantified gene counts with featureCounts (reads overlapping exons and assigns to genes using GTF), which outputted a gene count matrix. 
+We then used featureCounts to quantify gene expression. It counted how many reads overlapped with exons based on the GTF annotation file, grouping them by 'gene_id' to produce a gene-level count matrix.
 
-We then conducted differential gene expression analysis with DESeq2 by generating heatmaps, which we used to determine the genes which were upregulated or downregulated during hibernation as well as PCA. 
+For downstream analysis, we used DESeq2 to identify differentially expressed genes. We visualized results through PCA plots and heatmaps, allowing us to observe patterns of upregulated and downregulated genes during hibernation.
 
-Finally, we did gene ontology and KEGG enrichment analysis. 
+Finally, we performed Gene Ontology (GO) and KEGG pathway enrichment analysis to interpret the biological significance of the differentially expressed genes.
