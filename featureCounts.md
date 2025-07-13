@@ -18,12 +18,12 @@ We used featureCounts in a SLURM script to generate a gene-level count matrix fr
 #SBATCH --job-name=runFeatureCounts		# Job name
 #SBATCH --partition=128x24				# Partition name
 #SBATCH --mail-type=ALL               		# Mail events (NONE, BEGIN, END, FAIL, ALL)
-#SBATCH --mail-user=xbao10@ucsc.edu   	# Where to send mail
+#SBATCH --mail-user=santacruzid@ucsc.edu   	# Where to send mail
 #SBATCH --time=0-10:00:00 				# Wall clock time limit in Days-Hours:min:seconds
 #SBATCH --ntasks=1                 		# Run a single task
 #SBATCH --cpus-per-task=8                	# Use 8 threads for STAR
-#SBATCH --output=/hb/groups/sip_eeb_01/melody/scripts/logs/runfeaturecounts_%j.out    # Standard output and error log
-#SBATCH --error=/hb/groups/sip_eeb_01/melody/scripts/logs/runfeaturecounts_%j.err     # Standard output and error log
+#SBATCH --output=/hb/groups/sip_eeb_01/name/scripts/logs/runfeaturecounts_%j.out    # Standard output and error log
+#SBATCH --error=/hb/groups/sip_eeb_01/name/scripts/logs/runfeaturecounts_%j.err     # Standard output and error log
 #SBATCH --mem=8G                    # Allocate memory for the job.
 
 featureCounts [arguments] -o 3_featureCounts/bear_adipose_rawCounts.txt 2_STAR/*.bam
