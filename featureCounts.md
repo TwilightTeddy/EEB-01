@@ -14,17 +14,17 @@ We used featureCounts in a SLURM script to generate a gene-level count matrix fr
 ```
 #!/bin/bash
 
-#SBATCH --job-name=getSRA    			# Job name
+#slurm script to run FeatureCounts on STAR aligned BAM files
+#SBATCH --job-name=runFeatureCounts		# Job name
 #SBATCH --partition=128x24				# Partition name
 #SBATCH --mail-type=ALL               		# Mail events (NONE, BEGIN, END, FAIL, ALL)
-#SBATCH --mail-user=UCSC_ID@ucsc.edu   	# Where to send mail
-#SBATCH --time=0-05:00:00 				# Wall clock time limit in Days-Hours:min:seconds
-#SBATCH --ntasks=1                    		# Run a single task
-#SBATCH --cpus-per-task=4                  	# Use 4 threads for fasterq-dump
-#SBATCH --output=scripts/logs/fasterq-dump_%j.out    # Standard output and error log
-#SBATCH --error=scripts/logs/fasterq-dump_%j.err     # Standard output and error log
-#SBATCH --mem=8G                    		# Allocate memory for the job.
-#SBATCH --array=1-11					# array job
+#SBATCH --mail-user=xbao10@ucsc.edu   	# Where to send mail
+#SBATCH --time=0-10:00:00 				# Wall clock time limit in Days-Hours:min:seconds
+#SBATCH --ntasks=1                 		# Run a single task
+#SBATCH --cpus-per-task=8                	# Use 8 threads for STAR
+#SBATCH --output=/hb/groups/sip_eeb_01/melody/scripts/logs/runfeaturecounts_%j.out    # Standard output and error log
+#SBATCH --error=/hb/groups/sip_eeb_01/melody/scripts/logs/runfeaturecounts_%j.err     # Standard output and error log
+#SBATCH --mem=8G                    # Allocate memory for the job.
 
 featureCounts [arguments] -o 3_featureCounts/bear_adipose_rawCounts.txt 2_STAR/*.bam
 
