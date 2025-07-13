@@ -1,14 +1,13 @@
 ## Bioinformatics Pipeline:  trimgalore → STAR → featureCounts
 
-adapt and quality trimming with trimgalore (remove <50 bp reads), got FASTQ files from this, mapping transcripts to brown bear genome with STAR <- Map to brown bear genome (GCA_023065955.2)
-  Keep only uniquely mapped reads
-Convert to BAM
-Sort for downstream use,
+Here is an explanation of a key pathway in our workflow: our bioinformatics pipeline. 
 
-quantifying gene counts with featureCounts <- Count reads overlapping exons
-Assign to genes using GTF
+We started off by performing adaptation and quality trimming with trimgalore (which removed <50 bp reads), and got FASTQ files as an output. 
 
-THEN WE GET GENE_COUNTMATRIX
+Then, we proceeded by mapping transcripts to the brown bear (Ursus arctos) genome with STAR (GCA_023065955.2), keeping only uniquely mapped reads which were converted to BAM files representing the aligned sequences (sorted for downstream use).
 
-differential gene expression analysis with DESeq2, exploratory analysis with heatmap and PCA, then gene ontology and KEGG enrichment analysis
+Furthemore, we quantified gene counts with featureCounts (reads overlapping exons and assigns to genes using GTF), which outputted a gene count matrix. 
 
+We then conducted differential gene expression analysis with DESeq2 by generating heatmaps, which we used to determine the genes which were upregulated or downregulated during hibernation as well as PCA. 
+
+Finally, we did gene ontology and KEGG enrichment analysis. 
