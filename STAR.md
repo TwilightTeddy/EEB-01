@@ -42,12 +42,14 @@ STAR \
 --outFileNamePrefix analysis/2_star/${sra}_
 --outSAMtype BAM SortedByCoordinate
 ```
-
---outFilterMultimapNmax
-Read alignments will be output only if the read maps is less or equal than this value, otherwise no alignments will be output
---twopassMode Basic
-In the 2-pass mapping job, STAR will map the reads twice. In the 1st pass, the novel junctions will be detected and inserted into the genome indices
-In the 2nd pass, all reads will be re-mapped using annotated (from the GTF file) and novel (detected in the 1st pass) junctions.
+--runThreadN: Defines the # of threads to be used for genome generation.
+--runMode genomeGenerate option directs STAR to run genome indices generation job. 
+-- genomeDir: Specifies path to the directory where the genome indices are stored.
+-- genomeFastaFiles: Specifies one or more FASTA files with the genome reference sequences.
+-- sjdbGTFfile: Specifies the path to the file with annotated transcripts.
+--sjdbOverhang: Specifies the length of the genomic sequence around the annotated junction.
+--outFilterMultimapNmax: Read alignments will be output only if the read maps is less or equal than this value, otherwise no alignments will be output
+--twopassMode Basic: In the 2-pass mapping job, STAR will map the reads twice. In the 1st pass, the novel junctions will be detected and inserted into the genome indices. In the 2nd pass, all reads will be re-mapped using annotated (from the GTF file) and novel (detected in the 1st pass) junctions.
 
 
 
