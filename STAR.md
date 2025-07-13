@@ -6,25 +6,7 @@ STAR (Spliced Transcripts Alignment to a Reference) is an aligner designed to sp
 For every read that STAR aligns, STAR will search for the longest sequence that exactly matches one or more locations on the reference genome. These longest matching sequences are called MMPs. The different parts of the read that are mapped separately are called ‘seeds’. The algorithm achieves this highly efficient mapping by performing a two-step process including seed searching, clustering, stitching, and scoring. 
 
 ## Function
-STAR indexes genomes, which is a very efficient function as it does not require scanning the entire genome for every read. 
-
-1. STAR reads your input genome FASTA file(s), which contain the DNA sequences of chromosomes/scaffolds. Then, it combines these sequences into a single internal representation and records chromosome names and lengths.
-
-2. STAR builds a suffix array and related data structures that allow for ultra-fast searching of subsequences (e.g., mapping reads to genome locations). It also builds and index of the genome to allow for quick and memory-efficient lookups.
-
-3. Incorporate Transcript Annotations (Optional, but Recommended)
-If you provide a --sjdbGTFfile, STAR parses the GTF to find exon-exon splice junctions.
-For each annotated junction, STAR extracts a piece of the genome around the junction (--sjdbOverhang, typically Read Length - 1).
-These sequences are added to a splice junction database, improving STAR’s ability to align spliced RNA-seq reads that cross exon boundaries.
-
-4. Prepare Output Index Files
-STAR saves a set of binary and text files in the --genomeDir, which include:
-Genome — compressed version of the genome sequence.
-SA and SAindex — suffix array and its index.
-chrName.txt — chromosome names.
-sjdbList.out.tab — list of splice junctions (if GTF provided).
-sjdbInfo.txt — info about splice junctions.
-Other internal files. These files are later used in the alignment step when you provide --genomeDir.
+STAR indexes genomes, which is a very efficient function as it does not require scanning the entire genome for every read. STAR reads your input genome FASTA file(s), which contain the DNA sequences of chromosomes/scaffolds. Then, it combines these sequences into a single internal representation. In our workflow, we used STAR to align the trimmed reads to the Ursus arctos (brown bear) reference genome (GCA_023065955.2). We retained only uniquely mapped reads, and STAR output sorted BAM files containing the aligned sequences for each sample.
 
 ## Usage
 
