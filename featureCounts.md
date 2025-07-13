@@ -2,7 +2,7 @@
 featureCounts is a highly efficient general-purpose read summarization program that counts mapped reads for genomic features such as genes, exons, promoter, gene bodies, genomic bins and chromosomal locations. It can be used to count both RNA-seq and genomic DNA-seq reads.
 
 ## Purpose
-In our workflow, featureCounts was used to quantify gene expression by counting how many aligned RNA-seq fragments (from STAR) overlapped with known exons from a reference GTF annotation.
+In our workflow, featureCounts was used to quantify gene expression. It counted how many reads overlapped with exons based on the GTF annotation file, grouping them by 'gene_id' to produce a gene-level count matrix.
 
 ## Function
 featureCounts takes aligned sequencing reads (BAM and GTF annotation files) and determines how many of them fall within predefined regions (like genes or exons) in a genome. These exon-level counts were then summarized using the `gene_id` attribute to produce gene-level expression values. We used this gene counts matrix (gene_id and sample columns, etc.) as input for differential expression analysis in DESeq2. 
