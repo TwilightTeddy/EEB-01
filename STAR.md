@@ -31,6 +31,20 @@ Other internal files. These files are later used in the alignment step when you 
 We created a SLURM script to handle both downloading and converting STAR data in one batch job. Below is an example of our SLURM script and an explanation of each part:
 
 ```
+#slurm script to run STAR alignment on trimmed fastq data
+#SBATCH --job-name=runSTAR		# Job name
+#SBATCH --partition=128x24				# Partition name
+#SBATCH --mail-type=ALL               		# Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=UCSC_ID@ucsc.edu   	# Where to send mail
+#SBATCH --time=0-10:00:00 				# Wall clock time limit in Days-Hours:min:seconds
+#SBATCH --ntasks=1                 		# Run a single task
+#SBATCH --cpus-per-task=12                	# Use 12 threads for STAR
+#SBATCH --output=/hb/groups/sip_eeb_01/name/scripts/logs/index_genome_star_%j.out    # Standard output and error log
+#SBATCH --error=/hb/groups/sip_eeb_01/name/scripts/logs/index_genome_star_%j.err     # Standard output and error log
+#SBATCH --mem=32G                    # Allocate memory for the job.
+```
+Below are the command lines we used to run STAR:
+```
 STAR \
 --runThreadN 12 \
 --genomeDir ./2_star/indexed_genome/ \
