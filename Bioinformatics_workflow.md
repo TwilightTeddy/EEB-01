@@ -8,6 +8,6 @@ Next, we used STAR to align the trimmed reads to the *Ursus arctos* (brown bear)
 
 We then used featureCounts to quantify gene expression. It counted how many reads overlapped with exons based on the GTF annotation file, grouping them by 'gene_id' to produce a gene-level count matrix.
 
-For downstream analysis, we used DESeq2 to identify differentially expressed genes. We visualized results through PCA plots and heatmaps, allowing us to observe patterns of upregulated and downregulated genes during hibernation.
+For downstream analysis, we used DESeq2 to identify differentially expressed genes. We visualized results through PCA plots and heatmaps, allowing us to observe patterns of upregulated and downregulated genes during hibernation vs. active season.
 
 Finally, we performed Gene Ontology (GO) and KEGG pathway enrichment analysis to interpret the biological significance of the differentially expressed genes.
